@@ -34,11 +34,16 @@ public:
     // Core Method 2: Traverses and prints all node values for debugging
     void print_all() const;
 
+    void print_reverse() const;
+
     void push_back(int value);
 
     void pop_front();
     
     void pop_back();
+
+    void clear();
+
 };
 
 #endif
