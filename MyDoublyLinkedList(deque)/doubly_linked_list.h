@@ -29,18 +29,22 @@ public:
     ~DoublyLinkedList();
 
     // Core Method 1: Prepends a new node to the front of the list
-    void push_front(int value);
+    void push_front(int);
 
     // Core Method 2: Traverses and prints all node values for debugging
     void print_all() const;
 
     void print_reverse() const;
 
-    void push_back(int value);
+    void push_back(int);
 
     void pop_front();
     
     void pop_back();
+
+    void insert(Node*, int);
+
+    void erase(Node*);
 
     void clear();
 

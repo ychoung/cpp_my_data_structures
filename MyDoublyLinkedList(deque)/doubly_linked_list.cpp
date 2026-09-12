@@ -94,6 +94,49 @@ void DoublyLinkedList::pop_back()
     tail = newTail;
 }
 
+void DoublyLinkedList::insert(Node* target, int value)
+{
+    if(target == nullptr) return;
+
+    if(target == head)
+    {
+        push_front(value);
+        return;
+    }
+
+    Node* prev = target->prev;
+    Node* newNode = new Node(value, target, prev);
+    prev->next = newNode;
+    target->prev = newNode;
+
+}
+
+void DoublyLinkedList::erase(Node* target)
+{
+    if(target == nullptr) return;
+
+    if(target == head)
+    {
+        pop_front();
+        return;
+    }
+
+    if(target == tail)
+    {
+        pop_back();
+        return;
+    }
+
+    Node* prev = target->prev;
+    Node* next = target->next;
+
+    delete target; target = nullptr;
+
+    prev->next = next;
+    next->prev = prev;
+
+}
+
 void DoublyLinkedList::clear()
 {
     while(head != nullptr)
