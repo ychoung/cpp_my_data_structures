@@ -33,7 +33,7 @@ void DoublyLinkedList::print_all() const
     }
 }
 
-void DoublyLinkedList::print_reverse() const
+void DoublyLinkedList::print_reverse() const // print from the back
 {
     Node* tmp = tail;
     while(tmp != nullptr)
@@ -94,7 +94,7 @@ void DoublyLinkedList::pop_back()
     tail = newTail;
 }
 
-void DoublyLinkedList::insert(Node* target, int value)
+void DoublyLinkedList::insert(Node* target, int value) // insert a new node before the target node
 {
     if(target == nullptr) return;
 
@@ -111,7 +111,7 @@ void DoublyLinkedList::insert(Node* target, int value)
 
 }
 
-void DoublyLinkedList::erase(Node* target)
+void DoublyLinkedList::erase(Node* target) // erase the targt node
 {
     if(target == nullptr) return;
 
@@ -137,7 +137,7 @@ void DoublyLinkedList::erase(Node* target)
 
 }
 
-void DoublyLinkedList::clear()
+void DoublyLinkedList::clear() // remove all in the deque
 {
     while(head != nullptr)
     {
