@@ -46,6 +46,8 @@ public:
 
     void erase(Node*);
 
+    Node* find(int);
+
     void clear();
 
 };

@@ -8,8 +8,7 @@ int main(int argc, char const *argv[])
     dl.push_front(26);
     dl.push_front(23);
     dl.push_back(30);
-    dl.print_all();
-    dl.pop_back();
+    dl.insert(dl.find(30), 40);
     dl.print_all();
 
     return 0;

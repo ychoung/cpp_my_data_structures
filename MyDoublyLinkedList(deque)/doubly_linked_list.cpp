@@ -137,6 +137,20 @@ void DoublyLinkedList::erase(Node* target) // erase the targt node
 
 }
 
+Node *DoublyLinkedList::find(int value)
+{
+    Node* tmp = head;
+
+    while(tmp != nullptr)
+    {
+        if(tmp->data == value) return tmp;
+
+        tmp = tmp->next;
+    }
+
+    return nullptr;
+}
+
 void DoublyLinkedList::clear() // remove all in the deque
 {
     while(head != nullptr)
