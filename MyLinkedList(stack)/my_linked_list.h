@@ -31,6 +31,10 @@ public:
     void pop_front();
     
     void pop_back();
+
+    int top();
+
+    bool is_empty();
 };
 
 #endif

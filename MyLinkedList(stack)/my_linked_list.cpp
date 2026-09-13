@@ -87,3 +87,15 @@ void MyLinkedList::pop_back()
     delete removed; removed = nullptr;
 
 }
+
+int MyLinkedList::top()
+{
+    if(is_empty()) return -1;
+
+    return head->data;
+}
+
+bool MyLinkedList::is_empty()
+{
+    return head == nullptr;
+}
