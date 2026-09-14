@@ -1,4 +1,6 @@
 #include "my_vector.h"
+#include "my_vector.h"
+#include "my_vector.h"
 
 MyVector::MyVector(int init_capacity)
 {
