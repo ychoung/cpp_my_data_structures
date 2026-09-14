@@ -29,7 +29,7 @@ private:
 
     Node* remove_recursive_tree(Node*, int);
 
-    Node* find_parent(Node*, Node*);
+    Node* find_lca(Node*, int, int); // find lowest common ancestor
 
     void inorder_traversal(Node*);
 
@@ -55,6 +55,8 @@ public:
     void postorder();
 
     bool search(int);
+
+    int get_lca_value(int, int);
 };
 
 #endif

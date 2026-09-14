@@ -57,43 +57,29 @@ Node *BinaryTree::remove_recursive_tree(Node* current, int val)
             
             current->data = newCurrent->data;
 
-            Node* parent = find_parent(current->rchild, newCurrent);
+            current->rchild = remove_recursive_tree(current->rchild, newCurrent->data); // recursively visit the newCurrent node and delete it
 
-            if(parent == nullptr) // when parent is right above
-            {
-                parent = current;
-                if(!newCurrent->rchild) // when new current has no righ children
-                    current->rchild = nullptr;
-            }
-            else // when parent is not current
-            {
-                if(!newCurrent->rchild)
-                    parent->lchild = nullptr;
-            }
-
-            if(newCurrent->rchild) // when new current has right child.
-            {
-                parent->lchild = newCurrent->rchild;
-            }
-        
-
-            delete newCurrent; newCurrent = nullptr;
             return current;
         }
-
     }
 
     return current;
 }
 
-Node *BinaryTree::find_parent(Node* current, Node* child)
+Node *BinaryTree::find_lca(Node* current, int a, int b)
 {
-    if(current == nullptr)
-        return nullptr;
-    if(current->lchild == child)
+    if(current == nullptr) return nullptr;
+
+    if(a < current->data && b < current->data)
+        return find_lca(current->lchild, a, b);
+    else if(a > current->data && b > current->data)
+        return find_lca(current->rchild, a, b);
+    else
+    {
         return current;
-    
-    return find_parent(current->rchild, child);
+    }
+
+    return nullptr;
 }
 
 Node *BinaryTree::revised_inorder_traversal(Node* current)
@@ -175,4 +161,17 @@ void BinaryTree::postorder()
 bool BinaryTree::search(int val)
 {
     return find(root, val);
+}
+
+int BinaryTree::get_lca_value(int a, int b)
+{
+    if(root == nullptr) return -1; // error when root is empty
+
+    if(!find(root, a) || !find(root, b)) return -1;
+
+    Node* lca = find_lca(root, a, b);
+
+    if(lca == nullptr) return -1; // error when find lca does not get common ancestor
+    
+    return lca->data;
 }
