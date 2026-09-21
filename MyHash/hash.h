@@ -30,6 +30,7 @@ private:
     int indexMapping(size_t);
     Node* find(int, K);
     Node* findParent(int, K);
+    void rehashing();
 
 public:
     hash(int);
@@ -99,6 +100,40 @@ inline typename hash<K,V>::Node* hash<K, V>::findParent(int idx, K key)
 }
 
 template <typename K, typename V>
+inline void hash<K, V>::rehashing()
+{
+    capacity *= 2;
+
+    Node** newHashmap = new Node*[capacity]; // create 2 times larger array
+    Node** oldHashmap = hashmap; // name current hashmap old
+    hashmap = newHashmap; // hashmap points to larger hashmap
+
+    init(); // initialize new hashmap
+
+    Node* guest;
+    int newIdx;
+
+    for (int i = 0; i < (capacity >> 1); i++)
+    {
+        guest = oldHashmap[i];
+        while(guest != nullptr)
+        {
+            oldHashmap[i] = guest->next;
+            newIdx = indexMapping(hashing(guest->key)); // make a new Index
+
+            guest->next = hashmap[newIdx]; // make node points to new room. 
+            hashmap[newIdx] = guest;
+
+            guest = oldHashmap[i];
+        }
+    }
+
+    delete[] oldHashmap; oldHashmap = nullptr;
+    
+}
+
+
+template <typename K, typename V>
 inline hash<K, V>::hash(int capacity)
 {
     hashmap = new Node*[capacity];
@@ -122,6 +157,9 @@ inline hash<K, V>::~hash()
 template <typename K, typename V>
 inline void hash<K, V>::insert(K key, V value)
 {
+    if (size >= capacity * 2)
+        rehashing();
+    
     int idx = indexMapping(hashing(key));
     Node* replaced = find(idx, key);
 

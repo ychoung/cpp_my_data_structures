@@ -3,10 +3,11 @@
 
 int main(int argc, char const *argv[])
 {
-    hash<std::string, int> hashmap(8);
+    hash<std::string, int> hashmap(1);
 
-    hashmap["apple"] = 100;
-    hashmap["apple"] = 60;
+    hashmap.insert("key", 1);
+    hashmap.insert("apple", 3);
+    hashmap.insert("pineapple", 1);
     // hashmap["apple2"] = 100;
     // hashmap["apple3"] = 100;
     // hashmap["apple4"] = 100;
@@ -15,8 +16,7 @@ int main(int argc, char const *argv[])
     // hashmap["apple7"] = 100;
     // hashmap["apple8"] = 100;
 
-    std::cout << hashmap["apple"] << std::endl;
-    hashmap.erase("apple");
+    std::cout << hashmap["key"] << std::endl;
     std::cout << hashmap["apple"] << std::endl;
     return 0;
 }
