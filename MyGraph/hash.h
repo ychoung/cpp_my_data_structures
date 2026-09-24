@@ -13,11 +13,11 @@ private:
         V value;
         Node* next;
 
-        Node(K k, V v, Node* n)
+        Node(K k, const V& v, Node* n): key(k), value(v), next(n)
         {
-            key = k;
-            value = v;
-            next = n;
+            // key = k;
+            // value = v;
+            // next = n;
         }
     };
 

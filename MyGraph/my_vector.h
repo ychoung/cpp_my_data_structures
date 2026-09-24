@@ -16,7 +16,7 @@ public:
     MyVector(const MyVector<T>&);
     ~MyVector();
     
-    T at(int);
+    T& at(int);
     void push_back(T);
     void pop_back();
     void set(int, T);
@@ -27,11 +27,11 @@ public:
 };
 
 template<typename T>
-inline MyVector<T>::MyVector(int init_capacity)
+inline MyVector<T>::MyVector(int init_capacity): capacity(init_capacity), arr(new T[init_capacity]), size(0)
 {
-    capacity = init_capacity;
-    arr = new T[capacity];
-    size = 0;
+    // capacity = init_capacity;
+    // arr = new T[capacity];
+    // size = 0;
 }
 
 template <typename T>
@@ -69,7 +69,7 @@ inline void MyVector<T>::resize()
 }
 
 template<typename T>
-inline T MyVector<T>::at(int index)
+inline T& MyVector<T>::at(int index)
 {
     if(index < 0 || index >= size)
         throw std::out_of_range("Vector index out of bounds!");
